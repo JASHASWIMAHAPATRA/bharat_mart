@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BharatMart - Desi Deals, Global Feels</title>
+
+  <!-- Fonts & Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    nav a.active {
+      font-weight: bold;
+      color: #ff7f50;
+    }
+  </style>
+</head>
+<body>
+
+  <!--  Loader -->
+  <div id="loader">
+    <div class="loader-text">Loading BharatMart...</div>
+  </div>
+
+  <!--  Navbar -->
+  <header class="navbar">
+    <div class="logo">🛍️ BharatMart</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <input type="text" id="searchInput" placeholder="Search products..." />
+      <div class="cart-btn" id="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+      <span id="cart-count">0</span>
+      <button id="loginBtn">Login / Signup</button>
+    </div>
+  </header>
+
+  <!--  Hero Section -->
+  <section id="home" class="hero" data-aos="fade-up">
+    <div class="hero-content">
+      <h1>Desi Deals, Global Feels</h1>
+      <p>Discover products that define India’s future. Stylish, affordable & smart.</p>
+      <button class="cta-btn" onclick="scrollToSection('products')">Explore Collection</button>
+    </div>
+  </section>
+
+  <!--  Featured Categories -->
+  <section class="categories" data-aos="fade-up">
+    <h2>Shop by Categories</h2>
+    <div class="category-grid">
+      <div class="category-card">👚 Fashion</div>
+      <div class="category-card">📱 Electronics</div>
+      <div class="category-card">🍅 Groceries</div>
+      <div class="category-card">🎁 Gifts</div>
+    </div>
+  </section>
+
+  <!--  Best Sellers -->
+  <section id="products" class="best-sellers" data-aos="fade-up">
+    <h2>Best Sellers</h2>
+    <div class="product-grid">
+      <!-- Product Cards -->
+      <div class="product-card" data-name="smartwatch electronics wearable">
+        <img src="https://i.pinimg.com/736x/05/bc/18/05bc186a797a8bc3587695822d9712ed.jpg" alt="Smartwatch" />
+        <h3>Smartwatch</h3>
+        <p>₹1999</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card" data-name="kurti fashion women">
+        <img src="https://i.pinimg.com/736x/60/d6/86/60d6862579c5572bebb65f9e8146923b.jpg" alt="Kurti" />
+        <h3>Elegant Kurti</h3>
+        <p>₹799</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card" data-name="diya decor gifts">
+        <img src="https://i.pinimg.com/736x/1b/ff/b0/1bffb051373e1c6557052b6b9b58f4dd.jpg" alt="Diya" />
+        <h3>Handmade Diya Set</h3>
+        <p>₹299</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card" data-name="wireless earbuds electronics audio">
+        <img src="https://i.pinimg.com/474x/c3/81/ef/c381ef248a34c70147469ec3d03b4836.jpg" alt="Earbuds" />
+        <h3>Wireless Earbuds</h3>
+        <p>₹999</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card" data-name="mobile phone electronics smartphone">
+        <img src="https://i.pinimg.com/474x/3b/e7/13/3be71354842df270dd006710c7532916.jpg" alt="Mobile Phone" />
+        <h3>Budget Smartphone</h3>
+        <p>₹80000</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card" data-name="organic rice groceries food">
+        <img src="https://i.pinimg.com/736x/da/92/0c/da920cbff5a0d151df50136d8ed41d17.jpg" alt="Organic Rice" />
+        <h3>Organic Basmati Rice</h3>
+        <p>₹499</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card" data-name="saree fashion ethnic">
+        <img src="https://i.pinimg.com/736x/90/7a/87/907a87a74e5266efe168e9bb85a0cba0.jpg" alt="Saree" />
+        <h3>Silk Saree</h3>
+        <p>₹1599</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card" data-name="spices masala groceries kitchen">
+        <img src="https://i.pinimg.com/736x/f8/9d/b5/f89db5dd2aae72a90bfa94b5beab2a0e.jpg" alt="Spice Box" />
+        <h3>Indian Masala Box</h3>
+        <p>₹349</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Add more cards as needed -->
+    </div>
+    <p id="noResults" style="display:none; text-align:center; margin-top:20px;">No products found.</p>
+  </section>
+
+  <!--  Why Choose Us -->
+  <section id="about" class="why-us" data-aos="fade-up">
+    <h2>Why Choose BharatMart?</h2>
+    <div class="features">
+      <div class="feature-card">⚡ Fast Delivery</div>
+      <div class="feature-card">🔐 Secure Payments</div>
+      <div class="feature-card">🇮🇳 Made in India</div>
+    </div>
+  </section>
+
+  <!--  Newsletter -->
+  <section id="contact" class="newsletter" data-aos="fade-up">
+    <h2>Subscribe to our newsletter</h2>
+    <input id="newsletterEmail" type="email" placeholder="Enter your email" />
+    <button onclick="subscribe()">Subscribe</button>
+  </section>
+
+  <!--  Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#">FAQs</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="social-icons">
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-twitter"></i>
+    </div>
+    <p>© 2025 BharatMart. All rights reserved.</p>
+  </footer>
+
+  <!--  Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content" data-aos="zoom-in">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Welcome to BharatMart</h2>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('login')">Login</button>
+        <button class="tab-btn" onclick="showTab('signup')">Signup</button>
+      </div>
+      <div class="tab-content" id="login">
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button class="modal-btn">Login</button>
+      </div>
+      <div class="tab-content" id="signup" style="display:none;">
+        <input type="text" placeholder="Name">
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button class="modal-btn">Signup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Active nav link on scroll
+    const navLinks = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+      let fromTop = window.scrollY + 100;
+      navLinks.forEach(link => {
+        const section = document.querySelector(link.hash);
+        if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+
+    // Search filter
+    const searchInput = document.getElementById('searchInput');
+    const productCards = document.querySelectorAll('.product-card');
+    const noResults = document.getElementById('noResults');
+
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.toLowerCase();
+      let matches = 0;
+
+      productCards.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        if (name.includes(searchTerm)) {
+          card.style.display = 'block';
+          matches++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      noResults.style.display = matches === 0 ? 'block' : 'none';
+    });
+
+    // Modal login
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeModal = document.getElementById('closeModal');
+
+    loginBtn.addEventListener('click', () => loginModal.style.display = 'block');
+    closeModal.addEventListener('click', () => loginModal.style.display = 'none');
+    window.addEventListener('click', e => {
+      if (e.target === loginModal) loginModal.style.display = 'none';
+    });
+
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+      document.getElementById(tabName).style.display = 'block';
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.tab-btn[onclick="showTab('${tabName}')"]`).classList.add('active');
+    }
+
+    // Cart logic
+    let cart = [];
+    const cartCount = document.getElementById('cart-count');
+    const addToCartButtons = document.querySelectorAll('.product-card button');
+
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.product-card');
+        const name = card.querySelector('h3').textContent;
+        const price = card.querySelector('p').textContent;
+        const img = card.querySelector('img').src;
+
+        const product = { name, price, image: img };
+        cart.push(product);
+        localStorage.setItem('bharatmartCart', JSON.stringify(cart));
+        cartCount.textContent = cart.length;
+        alert(`${name} added to cart! 🛒`);
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedCart = localStorage.getItem('bharatmartCart');
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+        cartCount.textContent = cart.length;
+      }
+    });
+
+    // Dummy subscribe function
+    function subscribe() {
+      const email = document.getElementById('newsletterEmail').value;
+      if (email) {
+        alert(`Subscribed with ${email}`);
+        document.getElementById('newsletterEmail').value = '';
+      }
+    }
+  </script>
+
+<script>
+    document.getElementById('cart-icon').addEventListener('click', function () {
+      window.location.href = 'cart.html';
+    });
+  </script>
+  
+
+  <!-- Example Cart Display Modal or Section -->
+<div id="cartDisplay" style="display:none;">
+    <h2>Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <p id="emptyCartMessage">Your cart is empty!</p>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,89 @@
+CREATE DATABASE BharatMart;
+CREATE TABLE Users (
+  user_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE Products (
+  product_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  price DECIMAL(10, 2) NOT NULL,
+  category VARCHAR(100),
+  image_url VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE Categories (
+  category_id INT AUTO_INCREMENT PRIMARY KEY,
+  category_name VARCHAR(255) NOT NULL
+);
+CREATE TABLE Cart (
+  cart_id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  product_id INT,
+  quantity INT DEFAULT 1,
+  added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+  FOREIGN KEY (product_id) REFERENCES Products(product_id) ON DELETE CASCADE
+);
+CREATE TABLE Orders (
+  order_id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  total_amount DECIMAL(10, 2) NOT NULL,
+  order_status VARCHAR(50) DEFAULT 'pending',
+  order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+CREATE TABLE OrderItems (
+  order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+  order_id INT,
+  product_id INT,
+  quantity INT NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE,
+  FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+CREATE TABLE Newsletter (
+  subscriber_id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  subscribed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO Categories (category_name) VALUES 
+('Fashion'),
+('Electronics'),
+('Groceries'),
+('Gifts');
+INSERT INTO Products (name, description, price, category, image_url) VALUES
+('Smartwatch', 'A stylish smartwatch with advanced features', 1999.00, 'Electronics', 'https://i.pinimg.com/736x/05/bc/18/05bc186a797a8bc3587695822d9712ed.jpg'),
+('Elegant Kurti', 'A beautiful kurti for women', 799.00, 'Fashion', 'https://i.pinimg.com/736x/60/d6/86/60d6862579c5572bebb65f9e8146923b.jpg'),
+('Handmade Diya Set', 'Traditional Diya set for festivals', 299.00, 'Gifts', 'https://i.pinimg.com/736x/1b/ff/b0/1bffb051373e1c6557052b6b9b58f4dd.jpg'),
+('Wireless Earbuds', 'High-quality wireless earbuds', 999.00, 'Electronics', 'https://i.pinimg.com/474x/c3/81/ef/c381ef248a34c70147469ec3d03b4836.jpg'),
+('Budget Smartphone', 'Affordable smartphone with all features', 80000.00, 'Electronics', 'https://i.pinimg.com/474x/3b/e7/13/3be71354842df270dd006710c7532916.jpg'),
+('Organic Basmati Rice', 'Premium organic basmati rice', 499.00, 'Groceries', 'https://i.pinimg.com/736x/da/92/0c/da920cbff5a0d151df50136d8ed41d17.jpg'),
+('Silk Saree', 'Elegant silk saree for special occasions', 1599.00, 'Fashion', 'https://i.pinimg.com/736x/90/7a/87/907a87a74e5266efe168e9bb85a0cba0.jpg'),
+('Indian Masala Box', 'A box full of Indian spices', 349.00, 'Groceries', 'https://i.pinimg.com/736x/f8/9d/b5/f89db5dd2aae72a90bfa94b5beab2a0e.jpg');
+INSERT INTO Users (name, email, password) VALUES 
+('John Doe', 'john.doe@example.com', 'password123'),
+('Jane Smith', 'jane.smith@example.com', 'securepassword');
+INSERT INTO Cart (user_id, product_id, quantity) VALUES 
+(1, 1, 2),  -- John added 2 Smartwatches to his cart
+(2, 3, 1);  -- Jane added 1 Handmade Diya Set to her cart
+INSERT INTO Orders (user_id, total_amount, order_status) VALUES 
+(1, 3998.00, 'pending'),  -- John placed an order for 2 Smartwatches
+(2, 299.00, 'completed');  -- Jane completed her order for 1 Diya Set
+INSERT INTO OrderItems (order_id, product_id, quantity, price) VALUES 
+(1, 1, 2, 1999.00),  -- John ordered 2 Smartwatches
+(2, 3, 1, 299.00);  -- Jane ordered 1 Diya Set
+INSERT INTO Newsletter (email) VALUES 
+('newsletter1@example.com'),
+('newsletter2@example.com');
+SELECT * FROM Products;
+SELECT * FROM Users;
+SELECT * FROM Cart WHERE user_id = 1;
+SELECT * FROM Orders WHERE user_id = 2;
+SELECT p.name, oi.quantity, oi.price 
+FROM OrderItems oi 
+JOIN Products p ON oi.product_id = p.product_id 
+WHERE oi.order_id = 1;
